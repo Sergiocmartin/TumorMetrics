@@ -2,7 +2,6 @@
 TumorMetrics — 3D Slicer Extension
 Segmentación de tumores y cálculo de métricas clínicas (volumen, RECIST, esfericidad).
 
-Autor: Tu Nombre
 Licencia: MIT
 Repositorio: https://github.com/tu-usuario/TumorMetrics
 """
