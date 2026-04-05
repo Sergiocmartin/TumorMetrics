@@ -281,22 +281,23 @@ class TumorMetricsLogic(ScriptedLoadableModuleLogic):
         return spacing[0] * spacing[1] * spacing[2]
 
     def _estimateSurfaceArea(self, segmentationNode, volumeNode):
-        """
-        Estima el área de superficie del tumor usando la malla 3D.
-        Devuelve el área en mm².
-        """
-        try:
-            closedSurface = vtk.vtkPolyData()
-            segmentationNode.GetClosedSurfaceRepresentation(
-                segmentationNode.GetSegmentation().GetNthSegmentID(0),
-                closedSurface
-            )
-            massProps = vtk.vtkMassProperties()
-            massProps.SetInputData(closedSurface)
-            massProps.Update()
-            return massProps.GetSurfaceArea()
-        except Exception:
+        segmentId = segmentationNode.GetSegmentation().GetNthSegmentID(0)
+    
+    # Generar la representación de superficie cerrada si no existe
+        segmentationNode.GetSegmentation().CreateRepresentation(
+            slicer.vtkSegmentationConverter.GetSegmentationClosedSurfaceRepresentationName()
+        )
+    
+        closedSurface = vtk.vtkPolyData()
+        segmentationNode.GetClosedSurfaceRepresentation(segmentId, closedSurface)
+    
+        if closedSurface.GetNumberOfPoints() == 0:
             return 0.0
+        
+        massProps = vtk.vtkMassProperties()
+        massProps.SetInputData(closedSurface)
+        massProps.Update()
+        return massProps.GetSurfaceArea()
 
     def exportCSV(self, metrics, filePath):
         """Exporta las métricas calculadas a un archivo CSV."""
