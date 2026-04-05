@@ -2,8 +2,9 @@
 TumorMetrics — 3D Slicer Extension
 Segmentación de tumores y cálculo de métricas clínicas (volumen, RECIST, esfericidad).
 
+Autor: Sergio Castaño Martin
 Licencia: MIT
-Repositorio: https://github.com/tu-usuario/TumorMetrics
+Repositorio: https://github.com/Sergiocmartin/TumorMetrics
 """
 
 import os
@@ -31,7 +32,7 @@ class TumorMetrics(ScriptedLoadableModule):
         self.parent.title = "TumorMetrics"
         self.parent.categories = ["Oncology"]
         self.parent.dependencies = []
-        self.parent.contributors = ["Tu Nombre (Tu Institución)"]
+        self.parent.contributors = ["Sergio Castaño Martin"]
         self.parent.helpText = """
         Extensión para segmentación de tumores y cálculo de métricas clínicas:
         volumen (cm³), diámetro mayor RECIST (mm) y esfericidad.
