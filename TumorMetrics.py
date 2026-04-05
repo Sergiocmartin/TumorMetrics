@@ -10,6 +10,8 @@ Repositorio: https://github.com/Sergiocmartin/TumorMetrics
 import os
 import math
 import vtk
+import ctk
+import qt
 import slicer
 from slicer.ScriptedLoadableModule import (
     ScriptedLoadableModule,
